@@ -20,3 +20,5 @@ class AttentionWeightedAverage(Layer):
       self.trainable_weights = [self.W]
       super().build(input_shape)  
     
+    def call(self, x, mask=None):
+      pass
