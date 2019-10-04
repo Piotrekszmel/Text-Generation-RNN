@@ -3,9 +3,8 @@ from keras.layers import Input, Embedding, Dense, LSTM, Bidirectional
 from keras.layers import concatenate, Reshape, SpatialDropout1D
 from keras.models import Model
 from keras import backend as K
-from utils import new_rnn
 from AttentionWeightedAverage import AttentionWeightedAverage
-
+from utils import new_rnn
 
 def textgenrnn_model(num_classes, cfg, context_size=None,
                      weights_path=None,
@@ -28,3 +27,4 @@ def textgenrnn_model(num_classes, cfg, context_size=None,
     for i in range(cfg['rnn_layers']):
         prev_layer = embedded if i is 0 else rnn_layer_list[-1]
         rnn_layer_list.append(new_rnn(cfg, i+1)(prev_layer))
+    
