@@ -38,3 +38,10 @@ class AttentionWeightedAverage(Layer):
             return [result, att_weights]
         
         return result
+    
+    def compute_output_shape(self, input_shape):
+        output_len = input_shape[2]
+        if self.return_attention:
+            return [(input_shape[0], output_len), (input_shape[0],
+                                                   input_shape[1])]
+        return (input_shape[0], output_len)
