@@ -13,6 +13,7 @@ import h5py
 import csv
 import re
 
+
 def new_rnn(cfg, layer_num):
     use_cudnnlstm = K.backend() == 'tensorflow' and len(K.tensorflow_backend._get_available_gpus()) > 0
     if use_cudnnlstm:
@@ -36,7 +37,6 @@ def new_rnn(cfg, layer_num):
                     return_sequences=True,
                     recurrent_activation='sigmoid',
                     name='rnn_{}'.format(layer_num))
-
 
 
 def textgenrnn_sample(preds, temperature, interactive=False, top_n=3):
@@ -63,4 +63,9 @@ def textgenrnn_sample(preds, temperature, interactive=False, top_n=3):
 def textgenrnn_generate(model, vocab, indices_char, temperature=0.5, maxlen=40, meta_token="<s>",
                         word_level=False, single_text=False, max_gen_length=300, interactive=False,
                         top_n=3, prefix=None, synthesize=False, stop_tokens=[' ', '\n']):
-    pass
+    '''
+    Generates and returns a single text.
+    '''
+
+    collapse_char = " " if word_level else ""
+    end = False
