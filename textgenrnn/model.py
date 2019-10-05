@@ -3,8 +3,9 @@ from keras.layers import Input, Embedding, Dense, LSTM, Bidirectional
 from keras.layers import concatenate, Reshape, SpatialDropout1D
 from keras.models import Model
 from keras import backend as K
-from AttentionWeightedAverage import AttentionWeightedAverage
-from utils import new_rnn
+from .AttentionWeightedAverage import AttentionWeightedAverage
+from .utils import new_rnn
+
 
 def textgenrnn_model(num_classes, cfg, context_size=None,
                      weights_path=None,
