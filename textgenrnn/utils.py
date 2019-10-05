@@ -45,3 +45,22 @@ def textgenrnn_sample(preds, temperature, interactive=False, top_n=3):
       return np.argmax(preds)
 
     preds = np.log(preds + K.epsilon()) / temperature
+    exp_preds = np.exp(preds)
+    preds = exp_preds / np.sum(exp_preds)
+    probas = np.random.multinomial(1, preds, 1)
+
+    if not interactive:
+      index = np.argmax(probas)
+
+      if index == 0:
+        index = np.argsort([preds])[-2]
+      else:
+        index = (-preds).argsort()[:top_n]
+    
+    return index
+
+
+def textgenrnn_generate(model, vocab, indices_char, temperature=0.5, maxlen=40, meta_token="<s>",
+                        word_level=False, single_text=False, max_gen_length=300, interactive=False,
+                        top_n=3, prefix=None, synthesize=False, stop_tokens=[' ', '\n']):
+    pass
