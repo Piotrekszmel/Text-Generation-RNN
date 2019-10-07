@@ -74,3 +74,7 @@ def textgenrnn_generate(model, vocab, indices_char, temperature=0.5, maxlen=40, 
         punct = '!"#$%&()*+,-./:;<=>?@[\]^_`{|}~\\n\\t\'‘’“”’–—'
         prefix = re.sub('([{}])'.format(punct), r' \1 ', prefix)
         prefix_t = [x.lower() for x in prefix.split()]
+
+    if not word_level and prefix:
+      prefix_t = list(prefix)
+      
