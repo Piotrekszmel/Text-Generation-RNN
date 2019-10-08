@@ -97,8 +97,6 @@ def textgenrnn_generate(model, vocab, indices_char, temperature=0.5, maxlen=40, 
       encoded_text = text
 
 
-
-
 def textgenrnn_encode_sequence(text, vocab, maxlen):
     '''
     Encodes a text into the corresponding encoding for prediction with
@@ -108,6 +106,26 @@ def textgenrnn_encode_sequence(text, vocab, maxlen):
     encoded = np.array([vocab.get(x, 0) for x in text])
     return sequence.pad_sequences([encoded], maxlen=maxlen)
 
+
+def textgenrnn_texts_from_file(file_path, header=True, delim="\n", is_csv=False):
+    '''
+    Retrieves texts from a newline-delimited file and returns as a list.
+    '''
+
+    with open(file_path, 'r', encoding="utf8", errors="ignore") as f:
+      if header:
+        f.readline()
+      
+      if is_csv:
+        texts = []
+        reader = csv.reader(f)
+        for row in reader:
+          texts.append(row[0])
+
+      else:
+        texts = [line.rstrip(delim) for line in f]
+    
+    return texts
 
 
     
