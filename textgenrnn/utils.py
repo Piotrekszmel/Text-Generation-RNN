@@ -94,7 +94,10 @@ def textgenrnn_generate(model, vocab, indices_char, temperature=0.5, maxlen=40, 
       model = Model(inputs=model.inputs[0], outputs=model.outputs[1])
 
     while not end and len(text) < max_gen_length:
-      encoded_text = text
+      encoded_text = textgenrnn_encode_sequence(text[-maxlen:], vocab, maxlen)
+
+      next_temperature = temperature[(len(text) - 1) % len(temperature)]
+      
 
 
 def textgenrnn_encode_sequence(text, vocab, maxlen):
@@ -108,9 +111,9 @@ def textgenrnn_encode_sequence(text, vocab, maxlen):
 
 
 def textgenrnn_texts_from_file(file_path, header=True, delim="\n", is_csv=False):
-    '''
+    """
     Retrieves texts from a newline-delimited file and returns as a list.
-    '''
+    """
 
     with open(file_path, 'r', encoding="utf8", errors="ignore") as f:
       if header:
@@ -140,8 +143,20 @@ def textgenrnn_encode_cat(chars, vocab):
 def synthesize(textgens, n=1, return_as_list=False, prefix='',
                temperature=[0.5, 0.2, 0.2], max_gen_length=300,
                progress=True, stop_tokens=[' ', '\n']):
-    """Synthesizes texts using an ensemble of input models.
     """
+    Synthesizes texts using an ensemble of input models.
+    """
+
+    gen_texts = []
+    iterable = trange(n) if progress and n > 1 else range(n)
+    for _ in iterable:
+      shuffle(textgens)
+      gen_text = prefix
+      end = False
+      textgen_i = 0
+      while not end:
+        textgen = textgens[textgen_i % len(textgens)]
+    
 
 
     
