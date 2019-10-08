@@ -77,4 +77,16 @@ def textgenrnn_generate(model, vocab, indices_char, temperature=0.5, maxlen=40, 
 
     if not word_level and prefix:
       prefix_t = list(prefix)
+
+    if single_text: 
+      text = prefix_t if prefix else [""]
+      max_gen_length += maxlen
+    
+    if not isinstance(temperature, list):
+      temperature = [temperature]
+
+    if len(model.inputs) > 1:
+      model = Model(inputs=model.inputs[0], outputs=model.outputs[1])
+
       
+    
