@@ -82,11 +82,32 @@ def textgenrnn_generate(model, vocab, indices_char, temperature=0.5, maxlen=40, 
       text = prefix_t if prefix else [""]
       max_gen_length += maxlen
     
+    else:
+      text = [meta_token] + prefix_t if prefix else [meta_token]
+    
+    next_char = ""
+    
     if not isinstance(temperature, list):
       temperature = [temperature]
 
     if len(model.inputs) > 1:
       model = Model(inputs=model.inputs[0], outputs=model.outputs[1])
 
-      
+    while not end and len(text) < max_gen_length:
+      encoded_text = text
+
+
+
+
+def textgenrnn_encode_sequence(text, vocab, maxlen):
+    '''
+    Encodes a text into the corresponding encoding for prediction with
+    the model.
+    '''
+
+    encoded = np.array([vocab.get(x, 0) for x in text])
+    return sequence.pad_sequences([encoded], maxlen=maxlen)
+
+
+
     
