@@ -128,4 +128,20 @@ def textgenrnn_texts_from_file(file_path, header=True, delim="\n", is_csv=False)
     return texts
 
 
+def textgenrnn_encode_cat(chars, vocab):
+  a = np.float32(np.zeros((len(chars), len(vocab) + 1)))
+  rows, cols = zip(*[(i, vocab.get(char, 0))
+                       for i, char in enumerate(chars)])
+
+  a[rows, cols] = 1
+  return a 
+
+
+def synthesize(textgens, n=1, return_as_list=False, prefix='',
+               temperature=[0.5, 0.2, 0.2], max_gen_length=300,
+               progress=True, stop_tokens=[' ', '\n']):
+    """Synthesizes texts using an ensemble of input models.
+    """
+
+
     
