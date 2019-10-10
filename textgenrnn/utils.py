@@ -156,7 +156,28 @@ def synthesize(textgens, n=1, return_as_list=False, prefix='',
       textgen_i = 0
       while not end:
         textgen = textgens[textgen_i % len(textgens)]
+        gen_text, end = textgenrnn_generate(textgen.model,
+                                            textgen.vocab,
+                                            textgen.indices_char, 
+                                            temperature,
+                                            textgen.config["max_length"],
+                                            textgen.config.get("single_text", False),
+                                            max_gen_length,
+                                            prefix=gen_text,
+                                            synthesize=True,
+                                            stop_tokens=stop_tokens)
+        textgen_i += 1
+      
+      if not return_as_list:
+        print("{}.\n".format(gen_text))
+      gen_texts.append(gen_text)
     
+    if return_as_list:
+      return gen_texts
+
+
+
+  
 
 
     
