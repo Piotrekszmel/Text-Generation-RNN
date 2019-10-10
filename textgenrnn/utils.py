@@ -97,6 +97,24 @@ def textgenrnn_generate(model, vocab, indices_char, temperature=0.5, maxlen=40, 
       encoded_text = textgenrnn_encode_sequence(text[-maxlen:], vocab, maxlen)
 
       next_temperature = temperature[(len(text) - 1) % len(temperature)]
+
+      if not interactive:
+        next_index = textgenrnn_sample(model.predict(encoded_text, batch_size=1)[0],
+                                      next_temperature)
+        
+        next_char = indices_char[next_index]
+        text += [next_char]
+
+        if next_char == meta_token or len(text) >= max_gen_length:
+          end = True
+        
+        gen_break = (next_char in stop_tokens or word_level or len(stop_tokens) == 0)
+
+        if synthesize and gen_break:
+          break
+    
+    else:
+      
       
 
 
@@ -174,6 +192,7 @@ def synthesize(textgens, n=1, return_as_list=False, prefix='',
     
     if return_as_list:
       return gen_texts
+    
 
 
 
