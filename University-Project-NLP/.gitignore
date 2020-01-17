@@ -1,0 +1,5 @@
+model_word_indices.pickle
+/sentiment_analysis/embeddings/datastories.twitter.300d.pickle
+/sentiment_analysis/embeddings/datastories.twitter.300d.txt 
+/sentiment_analysis/weights
+tags

@@ -1,0 +1,10 @@
+flask
+ekphrasis
+sklearn
+numpy
+keras
+keras-utilities
+tensorflow
+frozendict
+cachetools
+pandas
