@@ -102,7 +102,6 @@ class text_generator:
                 print("{}\n".format(gen_text))
             gen_texts.append(gen_text)
         if return_as_list:
-            print(gen_texts)
             return gen_texts
 
     def generate_samples(self, n=3, temperatures=[0.2, 0.5, 1.0], **kwargs):

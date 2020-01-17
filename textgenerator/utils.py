@@ -231,6 +231,9 @@ def synthesize(textgens, n=1, return_as_list=False, prefix='',
 
 
 def synthesize_to_file(textgens, destination_path, **kwargs):
+    """
+    Save generated texts by synthesize to the given file
+    """
     texts = synthesize(textgens, return_as_list=True, **kwargs)
     with open(destination_path, 'w') as f:
         for text in texts:
