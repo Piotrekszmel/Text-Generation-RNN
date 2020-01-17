@@ -105,6 +105,9 @@ class text_generator:
             return gen_texts
 
     def generate_samples(self, n=3, temperatures=[0.2, 0.5, 1.0], **kwargs):
+        """
+        Generate n samples
+        """
         texts = []
         for temperature in temperatures:
             print('#'*20 + '\nTemperature: {}\n'.format(temperature) +
