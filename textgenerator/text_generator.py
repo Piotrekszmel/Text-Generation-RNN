@@ -66,8 +66,7 @@ class text_generator:
 
     def generate(self, n=1, return_as_list=False, prefix=None,
                  temperature=[1.0, 0.5, 0.2, 0.2],
-                 max_gen_length=300,
-                 top_n=3, progress=True):
+                 max_gen_length=300, progress=True):
         """
         Generate text
 
@@ -82,8 +81,6 @@ class text_generator:
         
         max_gen_length: maximum length of generated text
         
-        top_n: 
-
         Returns:
         if return_as_list then list of generated text else none
         """
@@ -100,7 +97,6 @@ class text_generator:
                                            self.config['word_level'],
                                            self.config.get('single_text', False),
                                            max_gen_length,
-                                           top_n,
                                            prefix)
             if not return_as_list:
                 print("{}\n".format(gen_text))

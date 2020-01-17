@@ -13,10 +13,9 @@ import csv
 import re
 
 
-def text_generation_sample(preds, temperature, interactive=False, top_n=3):
+def text_generation_sample(preds, temperature, interactive=False):
     '''
-    Samples predicted probabilities of the next character to allow
-    for the network to show "creativity."
+    Samples predicted probabilities of the next character 
     '''
     preds = np.asarray(preds).astype('float64')
 
@@ -28,17 +27,12 @@ def text_generation_sample(preds, temperature, interactive=False, top_n=3):
     preds = exp_preds / np.sum(exp_preds)
     probas = np.random.multinomial(1, preds, 1)
 
-    if not interactive:
-        index = np.argmax(probas)
-        # prevent function from being able to choose 0 (placeholder)
-        # choose 2nd best index from preds
-        if index == 0:
-            index = np.argsort(preds)[-2]
-    else:
-        # return list of top N chars/words
-        # descending order, based on probability
-        index = (-preds).argsort()[:top_n]
-
+    
+    index = np.argmax(probas)
+    # prevent function from being able to choose 0 (placeholder)
+    # choose 2nd best index from preds
+    if index == 0:
+       index = np.argsort(preds)[-2]
     return index
 
 
@@ -48,7 +42,6 @@ def text_generation_generate(model, vocab,
                         word_level=False,
                         single_text=False,
                         max_gen_length=300,
-                        top_n=3,
                         prefix=None,
                         synthesize=False,
                         stop_tokens=[' ', '\n']):
