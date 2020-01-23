@@ -313,9 +313,11 @@ class text_generator:
                             **kwargs)
 
     def save(self, weights_path="weights/text_generation_weights_saved.hdf5"):
+        """Save model weights"""
         self.model.save_weights(weights_path)
 
     def load(self, weights_path):
+        """Load model"""
         self.model = text_generation_model(self.num_classes,
                                       cfg=self.config,
                                       weights_path=weights_path)
