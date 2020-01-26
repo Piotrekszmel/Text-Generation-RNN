@@ -142,9 +142,6 @@ class text_generator:
                                  **kwargs)
             return
 
-        if context_labels:
-            context_labels = LabelBinarizer().fit_transform(context_labels)
-
         if 'prop_keep' in kwargs:
             train_size = kwargs["prop_keep"]
 
@@ -172,7 +169,7 @@ class text_generator:
         if train_size < 1.0 and validation:
             indices_list_val = indices_list[~indices_mask, :]
             gen_val = generate_sequences_from_texts(
-                texts, indices_list_val, self, context_labels, batch_size)
+                texts, indices_list_val, self, batch_size)
             val_steps = max(
                 int(np.floor(indices_list_val.shape[0] / batch_size)), 1)
 
@@ -186,26 +183,13 @@ class text_generator:
 
         steps_per_epoch = max(int(np.floor(num_tokens / batch_size)), 1)
 
-        gen = generate_sequences_from_texts(texts, indices_list, self, context_labels, batch_size)
+        gen = generate_sequences_from_texts(texts, indices_list, self, batch_size)
 
         base_lr = 4e-3
 
         # scheduler function must be defined inline.
         def lr_linear_decay(epoch):
             return (base_lr * (1 - (epoch / num_epochs)))
-
-        if context_labels is not None:
-            if new_model:
-                weights_path = None
-            else:
-                weights_path = "weights/{}_weights.hdf5".format(self.config['name'])
-                self.save(weights_path)
-
-            self.model = text_generation_model(self.num_classes,
-                                          dropout=dropout,
-                                          cfg=self.config,
-                                          context_size=context_labels.shape[1],
-                                          weights_path=weights_path)
 
         model_t = self.model
 
@@ -237,12 +221,7 @@ class text_generator:
                               validation_steps=val_steps
                               )
 
-        # Keep the text-only version of the model if using context labels
-        if context_labels is not None:
-            self.model = Model(inputs=self.model.input[0],
-                               outputs=self.model.output[1])
-
-    def train_new_model(self, texts, context_labels=None, num_epochs=50,
+    def train_new_model(self, texts, num_epochs=50,
                         gen_epochs=1, batch_size=128, dropout=0.0,
                         train_size=1.0,
                         validation=True, save_epochs=0,
@@ -299,7 +278,6 @@ class text_generator:
 
         self.train_on_texts(texts, new_model=True,
                             via_new_model=True,
-                            context_labels=context_labels,
                             num_epochs=num_epochs,
                             gen_epochs=gen_epochs,
                             train_size=train_size,
@@ -325,20 +303,15 @@ class text_generator:
         self.__init__(name=self.config['name'])
 
     def train_from_file(self, file_path, header=True, delim="\n",
-                        new_model=False, context=None,
-                        is_csv=False, **kwargs):
-        context_labels = None
+                        new_model=False, is_csv=False, **kwargs):
         
-        if context:
-            texts, context_labels = text_generation_texts_from_file_context(file_path)
-        else:
-            texts = text_generation_texts_from_file(file_path, header, delim, is_csv)
+        texts = text_generation_texts_from_file(file_path, header, delim, is_csv)
 
         print("{:,} texts collected.".format(len(texts)))
         if new_model:
-            self.train_new_model(texts, context_labels=context_labels, **kwargs)
+            self.train_new_model(texts, **kwargs)
         else:
-            self.train_on_texts(texts, context_labels=context_labels, **kwargs)
+            self.train_on_texts(texts, **kwargs)
 
     def train_from_largetext_file(self, file_path, new_model=True, **kwargs):
         with open(file_path, 'r', encoding='utf8', errors='ignore') as f:
