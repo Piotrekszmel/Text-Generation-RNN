@@ -115,8 +115,7 @@ class text_generator:
             texts.append(self.generate(n, temperature=temperature, progress=False, **kwargs))
         return texts
 
-    def train_on_texts(self, texts, context_labels=None,
-                       batch_size=128,
+    def train_on_texts(self, texts, batch_size=128,
                        num_epochs=50,
                        verbose=1,
                        new_model=False,
@@ -132,7 +131,6 @@ class text_generator:
 
         if new_model and not via_new_model:
             self.train_new_model(texts,
-                                 context_labels=context_labels,
                                  num_epochs=num_epochs,
                                  gen_epochs=gen_epochs,
                                  train_size=train_size,
