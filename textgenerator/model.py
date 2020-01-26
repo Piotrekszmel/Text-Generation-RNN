@@ -6,8 +6,7 @@ from keras import backend as K
 from Attention import Attention
 
 
-def text_generation_model(num_classes, cfg, context_size=None,
-                     weights_path=None,
+def text_generation_model(num_classes, cfg, weights_path=None,
                      dropout=0.0,
                      optimizer=RMSprop(lr=4e-3, rho=0.99)):
     '''
@@ -17,7 +16,6 @@ def text_generation_model(num_classes, cfg, context_size=None,
     Parameters:
     num_classes: size of vocab
     cfg: loaded configuration 
-    context_size: size of the context
     weights_path: path to weights file
     dropout: rate for Spatialdropout1D layer
     optimizer: optimizer for the model

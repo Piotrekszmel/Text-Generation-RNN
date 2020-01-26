@@ -34,6 +34,8 @@ class Attention(Layer):
     def call(self, x, mask=None):
         """
         The logic of applying the layer to the input tensors 
+        
+        If self.return_attention then returns [result, att_weights]
         """
         logits = K.dot(x, self.W)
         x_shape = K.shape(x)

@@ -162,24 +162,6 @@ def text_generation_texts_from_file(file_path, header=True,
     return texts
 
 
-def text_generation_texts_from_file_context(file_path, header=True):
-    """
-    Retrieves texts+context from a two-column CSV.
-    """
-
-    with open(file_path, 'r', encoding='utf8', errors='ignore') as f:
-        if header:
-            f.readline()
-        texts = []
-        context_labels = []
-        reader = csv.reader(f)
-        for row in reader:
-            texts.append(row[0])
-            context_labels.append(row[1])
-
-    return (texts, context_labels)
-
-
 def text_generation_encode_cat(chars, vocab):
     """
     One-hot encodes values at given chars efficiently by preallocating
