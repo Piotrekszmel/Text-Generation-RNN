@@ -269,11 +269,11 @@ class text_generator:
                             **kwargs)
 
     def save(self, weights_path="weights/text_generation_weights_saved.hdf5"):
-        """Save model weights"""
+        """Saves model weights"""
         self.model.save_weights(weights_path)
 
     def load(self, weights_path):
-        """Load model"""
+        """Loads model"""
         self.model = text_generation_model(self.num_classes,
                                       cfg=self.config,
                                       weights_path=weights_path)
@@ -284,7 +284,7 @@ class text_generator:
 
     def train_from_file(self, file_path, header=True, delim="\n",
                         new_model=False, is_csv=False, **kwargs):
-        
+        """Loads texts from a given file and trains a model based on the selected configuration"""
         texts = text_generation_texts_from_file(file_path, header, delim, is_csv)
 
         print("{:,} texts collected.".format(len(texts)))
@@ -294,16 +294,17 @@ class text_generator:
             self.train_on_texts(texts, **kwargs)
 
     def train_from_largetext_file(self, file_path, new_model=True, **kwargs):
+        """Loads texts from a given text file and trains a model based on the selected configuration"""
         with open(file_path, 'r', encoding='utf8', errors='ignore') as f:
             texts = [f.read()]
 
         if new_model:
-            self.train_new_model(
-                texts, single_text=True, **kwargs)
+            self.train_new_model(texts, single_text=True, **kwargs)
         else:
             self.train_on_texts(texts, single_text=True, **kwargs)
 
     def generate_to_file(self, destination_path, **kwargs):
+        """Saves the generated texts to the given file"""
         texts = self.generate(return_as_list=True, **kwargs)
         with open(destination_path, 'w') as f:
             for text in texts:
