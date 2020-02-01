@@ -9,7 +9,7 @@ from Attention import Attention
 def text_generation_model(num_classes, cfg, weights_path=None,
                      dropout=0.0,
                      optimizer=RMSprop(lr=4e-3, rho=0.99)):
-    '''
+    """
     Builds the model architecture for text_generation and
     loads the specified weights for the model.
     
@@ -22,7 +22,7 @@ def text_generation_model(num_classes, cfg, weights_path=None,
     
     Returns: 
     Keras model 
-    '''
+    """
     input = Input(shape=(cfg['max_length'],), name='input')
     embedded = Embedding(num_classes, cfg['dim_embeddings'],
                          input_length=cfg['max_length'],

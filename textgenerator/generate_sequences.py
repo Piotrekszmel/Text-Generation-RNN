@@ -10,6 +10,9 @@ import numpy as np
 
 def generate_sequences_from_texts(texts, indices_list,
                                   textgen, batch_size=128):
+    """
+    Generates sequences from the given texts based on the selected configuration
+    """
     is_words = textgen.config['word_level']
     is_single = textgen.config['single_text']
     max_length = textgen.config['max_length']
