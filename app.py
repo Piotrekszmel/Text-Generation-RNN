@@ -8,3 +8,10 @@ sys.path.append("textgenerator/")
 
 from textgenerator.text_generator import text_generator
 from textgenerator.utils import text_generation_texts_from_file
+
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    return render_template("index.html")
