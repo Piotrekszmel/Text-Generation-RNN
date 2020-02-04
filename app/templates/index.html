@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text Generation</title>
+  <link rel="stylesheet" href="../static/css/text_generation.css">
+</head>
+<body>
+    <div class="ml-container" style="background-color: #1e1e1e	">
+        <div>
+            <form action="{{  url_for('index')}}" method='POST'>
+                    <input class="button__back" style="background-color: whitesmoke; color: black; font-weight: bold;" type="submit" value="BACK">
+            </form>
+        </div>
+        <div style="padding: 20px;">
+            <h1 style="color: orange;">Choose weights for you model</h1>
+            <select class="select-css">
+                    <option style="font-weight: bold;" value="text_generation_weights">BASIC WEIGHTS</option>
+                    <option style="font-weight: bold;" value="english_weights">ENGLISH WEIGHTS</option>
+                    <option style="font-weight: bold;" value="twitter_weights">TWITTER WEIGHTS</option>
+                    <option style="font-weight: bold;" value="shakespeare_weights">SHAKESPEARE WEIGHTS</option>
+            </select>
+            <br><br>
+            <h1 style="color: orange; ">Choose max length for generated text and temperatures</h1>
+            <form style="color: white;" action="/save_options" enctype="application/json" method="POST">
+                MAX LENGTH: <input type="text" name="max_length" style="font-size: 1em;" placeholder="1000">
+                &nbsp; &nbsp;TEMPERATURES: <input type="text" name="temperatures" style="font-size: 1em;" 
+                placeholder="0.2, 0.4, 0.8, 1"> 
+                <br><br>
+                <button class='button_predict' type="submit">Save Options</button>
+            </form>
+            <br/><br/><br/>
+            <h1 style="color: rosybrown">
+                YOU CAN ALSO UPLOAD YOUR FILE WITH TEXT AND GET GENERATED TEXT BASED ON CHOOSEN 
+                WEIGHTS AND TEXT FROM YOUR FILE!
+            </h1>
+            <br><br><br>
+            <div style="padding: 0% 0 3%; margin: 0 auto;">
+                <div id='loader' style='padding:0%;'></div>
+            </div>
+            <form action='/read' method='POST' enctype="application/json" name="file_name">
+                <div>
+                    <div id="file-upload-filename"></div>
+                    <input type="file" id="file-upload" name="data_file">
+                    <label for='file-upload' class='button1'><span>Upload text file</span></label>
+                </div>
+                <div class="predictions">
+                    <button class='button_predict' type="submit" onclick='showLoader()'>Generate!</button>
+                </div>
+                <div style="padding: 2%">
+                    <p id='errorMsg' style='padding: 1%; color: red;'>{{error}}</p></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        var input = document.getElementById( 'file-upload' );
+        var infoArea = document.getElementById( 'file-upload-filename' );
+        input.addEventListener( 'change', showFileName );
+        function showFileName( event ) {
+            // the change event gives us the input it occurred in 
+            var input = event.srcElement;
+            // the input has an array of files in the `files` property, each one has a name that you can use. 
+            // We're just using the name here.
+            var fileName = input.files[0].name;
+            // use fileName however fits your app best, i.e. add it into a div
+            infoArea.textContent = fileName;
+        }                
+        function showLoader(){
+            var loader = document.getElementById('loader');
+            loader.style.visibility = 'visible';
+            window.location = 'http://localhost:5004/Generation';            
+        }
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
+</body>
