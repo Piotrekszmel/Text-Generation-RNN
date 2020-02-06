@@ -6,7 +6,7 @@ This project enables training of a text-generating neural network of a selected 
 
 # Architecture 
 
-![Screenshot](resources/images/default_model.png)
+![Screenshot](static/images/default_model.png)
 
 
  
