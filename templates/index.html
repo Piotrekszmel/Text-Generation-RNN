@@ -31,20 +31,10 @@
                 <button class='button_predict' type="submit">Save Options</button>
             </form>
             <br/><br/><br/>
-            <h1 style="color: rosybrown">
-                YOU CAN ALSO UPLOAD YOUR FILE WITH TEXT AND GET GENERATED TEXT BASED ON CHOOSEN 
-                WEIGHTS AND TEXT FROM YOUR FILE!
-            </h1>
-            <br><br><br>
             <div style="padding: 0% 0 3%; margin: 0 auto;">
                 <div id='loader' style='padding:0%;'></div>
             </div>
             <form action='/read' method='POST' enctype="application/json" name="file_name">
-                <div>
-                    <div id="file-upload-filename"></div>
-                    <input type="file" id="file-upload" name="data_file">
-                    <label for='file-upload' class='button1'><span>Upload text file</span></label>
-                </div>
                 <div class="predictions">
                     <button class='button_predict' type="submit" onclick='showLoader()'>Generate!</button>
                 </div>

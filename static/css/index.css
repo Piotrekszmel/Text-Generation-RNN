@@ -19,7 +19,7 @@ p {
 .ml-container {
 	align-items: center;
 	justify-content: center;
-	margin: 0;
+    margin: 0;
 }
 
 .topic {
@@ -175,10 +175,11 @@ input:focus + label {
     background-color: goldenrod;
     text-transform: uppercase;
     text-decoration: none;
-    font-weight: 900;
+    font-weight: bold;
+    font-size: 80%;
     width: 8%;
-    height: 40px;
-    border: 2px solid #fff !important;
+    height: 60%;
+    border: 2% solid #fff !important;
     border-radius: 50px;
     display: inline-block;
     transition: all 0.4s ease 0s;
@@ -257,6 +258,8 @@ label {
     padding-top: 1%;
     justify-content: center;
     align-items: center;
+    height: 120%;
+    border: 1px solid red
 }
 
 
