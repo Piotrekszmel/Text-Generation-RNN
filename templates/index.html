@@ -14,16 +14,17 @@
             </form>
         </div>
         <div style="padding: 20px;">
-            <h1 style="color: orange;">Choose weights for you model</h1>
-            <select class="select-css">
-                    <option style="font-weight: bold;" value="text_generation_weights">BASIC WEIGHTS</option>
-                    <option style="font-weight: bold;" value="english_weights">ENGLISH WEIGHTS</option>
-                    <option style="font-weight: bold;" value="twitter_weights">TWITTER WEIGHTS</option>
-                    <option style="font-weight: bold;" value="shakespeare_weights">SHAKESPEARE WEIGHTS</option>
-            </select>
-            <br><br>
-            <h1 style="color: orange; ">Choose max length for generated text and temperatures</h1>
             <form style="color: white;" action="/save_options" enctype="application/json" method="POST">
+                <h1 style="color: orange;">Choose weights for you model</h1>
+                <select class="select-css" name="weightOption">
+                        <option style="font-weight: bold;" value="text_generation_weights">BASIC WEIGHTS</option>
+                        <option style="font-weight: bold;" value="english_weights">ENGLISH WEIGHTS</option>
+                        <option style="font-weight: bold;" value="twitter_weights">TWITTER WEIGHTS</option>
+                        <option style="font-weight: bold;" value="shakespeare_weights">SHAKESPEARE WEIGHTS</option>
+                </select>
+                <br/><br/><br/><br/>
+                <h1 style="color: orange; ">Choose max length for generated text and temperatures</h1>
+                <br/><br/>
                 MAX LENGTH: <input type="text" name="max_length" style="font-size: 1em;" placeholder="1000">
                 &nbsp; &nbsp;TEMPERATURES: <input type="text" name="temperatures" style="font-size: 1em;" 
                 placeholder="0.2, 0.4, 0.8, 1"> 

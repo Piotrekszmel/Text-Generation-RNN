@@ -178,7 +178,7 @@ input:focus + label {
     font-weight: bold;
     font-size: 80%;
     width: 8%;
-    height: 60%;
+    height: 50px;
     border: 2% solid #fff !important;
     border-radius: 50px;
     display: inline-block;
@@ -259,9 +259,7 @@ label {
     justify-content: center;
     align-items: center;
     height: 120%;
-    border: 1px solid red
 }
-
 
 #loader {
     position: absolute;
