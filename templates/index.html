@@ -16,7 +16,7 @@
         <div style="padding: 20px;">
             <h1></h1>
             <form style="color: white;" action="/save_options" enctype="application/json" method="POST">
-                <h1 style="color: orange;">Choose weights for you model</h1>
+                <h1 style="color: orange;">CHOOSE WEIGHTS FOR YOUR MODEL</h1>
                 <select class="select-css" name="weightOption">
                         <option style="font-weight: bold;" value="english_128_300LSTM">BASIC WEIGHTS</option>
                         <option style="font-weight: bold;" value="english_128_300LSTM">ENGLISH WEIGHTS</option>
@@ -24,7 +24,12 @@
                         <option style="font-weight: bold;" value="shakespeare_weights">SHAKESPEARE WEIGHTS</option>
                 </select>
                 <br/><br/><br/><br/>
-                <h1 style="color: orange; ">Choose max length for generated text and temperatures</h1>
+                
+                <div style="text-align: center;">
+                    <div class="outer">
+                        <h1 style="color: orange; display: inline-block; text-align: left;">1. CHOOSE CONFIGURATION <br/> 2. SAVE OPTIONS <br/> 3. GENERATE!</h1> 
+                    </div>
+                </div>
                 <br/><br/>
                 <div class="outer">
                     <label>MAX LENGTH:</label> 
