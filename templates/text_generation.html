@@ -6,6 +6,12 @@
         <link rel="stylesheet" href="../static/css/index.css">
     </head>
     <body style="background-color: black;">    
-        <p class="center" style="padding-top: 10%; color: white;">{% for text in generated %} {{ text }} <br/><br/>{% endfor %}</p>
+        <p class="center" style="padding-top: 10%; color: white;">
+            {% for text in generated %} 
+                {% for t in text %} 
+                    {{ t }} <br/><br/>
+                {% endfor %}
+            {% endfor %}
+        </p>
     </body>
 </html>%      

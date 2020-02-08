@@ -42,7 +42,7 @@ def read_file():
                 vocab_path=vocab_path,
                 config_path=config_path
             )
-        gens = train_gen.generate_samples(n=1, max_gen_length=max_length, temperatures=temps, return_as_list=True)
+        gens = train_gen.generate_samples(n=3, max_gen_length=max_length, temperatures=temps, return_as_list=True)
         print(gens)
         return render_template("text_generation.html", generated=gens)
     except Exception as e:
