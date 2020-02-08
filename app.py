@@ -17,9 +17,10 @@ def index():
 @app.route('/save_options', methods=["POST"])
 def save_options():
     # TODO: change to post request
-    global temps, max_length, weights_path, vocab_path, config_path
+    global temps, max_length, n_samples, weights_path, vocab_path, config_path
     max_length = int(request.form["max_length"])
     temps = [float(value) for value in request.form["temperatures"].split(',')]
+    n_samples = int(request.form["samples"])
     weights_path = "textgenerator/weights/" + request.form["weightOption"] + "_weights.hdf5"
     vocab_path = "textgenerator/vocabs/" + request.form["weightOption"] + "_vocab.json"
     config_path = "textgenerator/configs/" + request.form["weightOption"] + "_config.json"
@@ -34,6 +35,7 @@ def read_file():
     try:
         assert max_length > 0
         assert len(temps) > 0
+        assert n_samples > 0
         assert weights_path is not None
         assert vocab_path is not None
         assert config_path is not None
@@ -42,7 +44,7 @@ def read_file():
                 vocab_path=vocab_path,
                 config_path=config_path
             )
-        gens = train_gen.generate_samples(n=3, max_gen_length=max_length, temperatures=temps, return_as_list=True)
+        gens = train_gen.generate_samples(n=n_samples, max_gen_length=max_length, temperatures=temps, return_as_list=True)
         print(gens)
         return render_template("text_generation.html", generated=gens)
     except Exception as e:

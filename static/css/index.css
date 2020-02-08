@@ -16,6 +16,8 @@ p {
 	font-size: 1.3em;
 }
 
+
+
 .ml-container {
 	align-items: center;
 	justify-content: center;
@@ -266,6 +268,18 @@ label {
     color: white; 
     padding-top: 10%;
     border: 1px solid red;
+}
+
+.outer {
+    width: 100%;
+}
+  
+.outer label {
+    width: 50%;
+}
+  
+.outer input {
+    width: 50%;
 }
 
 #loader {
