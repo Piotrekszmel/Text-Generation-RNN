@@ -7,7 +7,9 @@ import sys
 sys.path.append("textgenerator/")
 from textgenerator.text_generator import text_generator
 
+
 app = Flask(__name__)
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -51,6 +53,7 @@ def read_file():
         return render_template("index.html", error=e)
     
     return render_template("index.html", error="Sucess")
+
 
 if __name__ == "__main__":
     from keras.backend.tensorflow_backend import set_session
