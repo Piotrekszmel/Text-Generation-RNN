@@ -17,8 +17,8 @@
             <form style="color: white;" action="/save_options" enctype="application/json" method="POST">
                 <h1 style="color: orange;">Choose weights for you model</h1>
                 <select class="select-css" name="weightOption">
-                        <option style="font-weight: bold;" value="text_generation_weights">BASIC WEIGHTS</option>
-                        <option style="font-weight: bold;" value="english_weights">ENGLISH WEIGHTS</option>
+                        <option style="font-weight: bold;" value="english_128_300LSTM">BASIC WEIGHTS</option>
+                        <option style="font-weight: bold;" value="english_128_300LSTM">ENGLISH WEIGHTS</option>
                         <option style="font-weight: bold;" value="twitter_weights">TWITTER WEIGHTS</option>
                         <option style="font-weight: bold;" value="shakespeare_weights">SHAKESPEARE WEIGHTS</option>
                 </select>
@@ -37,7 +37,7 @@
             </div>
             <form action='/read' method='POST' enctype="application/json" name="file_name">
                 <div class="predictions">
-                    <button class='button_predict' type="submit" onclick='showLoader()'>Generate!</button>
+                    <button class='button_predict' type="submit">Generate!</button>
                 </div>
                 <div style="padding: 2%">
                     <p id='errorMsg' style='padding: 1%; color: red;'>{{error}}</p></p>

@@ -261,6 +261,10 @@ label {
     height: 120%;
 }
 
+.center { 
+    text-align: center;
+}
+
 #loader {
     position: absolute;
     left: 48.5%;

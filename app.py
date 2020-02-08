@@ -44,7 +44,7 @@ def read_file():
             )
         gens = train_gen.generate_samples(max_gen_length=max_length, temperatures=temps, return_as_list=True)
         print(gens)
-        return str(gens)
+        return render_template("text_generation.html", generated=gens[0])
     except Exception as e:
         return render_template("index.html", error=e)
     
