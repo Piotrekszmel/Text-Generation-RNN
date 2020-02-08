@@ -261,8 +261,11 @@ label {
     height: 120%;
 }
 
-.center { 
+.centered { 
     text-align: center;
+    color: white; 
+    padding-top: 10%;
+    border: 1px solid red;
 }
 
 #loader {
