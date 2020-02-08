@@ -53,4 +53,9 @@ def read_file():
     return render_template("index.html", error="Sucess")
 
 if __name__ == "__main__":
+    from keras.backend.tensorflow_backend import set_session
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    sess = tf.Session(config=config)
+    set_session(sess)
     app.run(debug=False, host="0.0.0.0", port=5004)
