@@ -1,5 +1,5 @@
 scipy
-numpy==1.60.0
+numpy==1.17.3
 pip==9.0.1
 scikit-learn==0.21.3 
 pandas==0.25.1
