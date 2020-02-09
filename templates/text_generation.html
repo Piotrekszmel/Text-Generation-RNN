@@ -8,9 +8,13 @@
     <body style="background-color: black;">    
         <p class="center" style="padding-top: 10%; color: white;">
             {% for temp in temps %} 
-                temperature: {{temp}}
+                <p style="color: orange">TEMPERATURE: {{temp}}</p> <br/><br/>
                 {% for text in generated[loop.index0] %} 
-                    {{text}} <br/>
+                
+                    <div class="outer">
+                        <p style="display: inline-block; text-align: left; color: white;">{{loop.index}}. {{text}} <br/> </p>
+                    </div>
+                
                 {% endfor %}
                 <br/><br/>
             {% endfor %}
