@@ -18,7 +18,6 @@ def index():
 
 @app.route('/save_options', methods=["POST"])
 def save_options():
-    # TODO: change to post request
     global prefix, temps, max_length, n_samples, weights_path, vocab_path, config_path
     max_length = int(request.form["max_length"])
     temps = [float(value) for value in request.form["temperatures"].split(',')]
@@ -27,9 +26,6 @@ def save_options():
     vocab_path = "textgenerator/vocabs/" + request.form["weightOption"] + "_vocab.json"
     config_path = "textgenerator/configs/" + request.form["weightOption"] + "_config.json"
     prefix = request.form["prefix"]
-    print(weights_path)
-    print(vocab_path)
-    print(config_path)
     return redirect(url_for("index"))
 
 
@@ -62,5 +58,5 @@ if __name__ == "__main__":
     config.gpu_options.allow_growth = True
     sess = tf.Session(config=config)
     set_session(sess)
-    #app.run()
-    app.run(debug=False, host="0.0.0.0", port=5004)
+    app.run(host='0.0.0.0')
+    
