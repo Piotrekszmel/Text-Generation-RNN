@@ -19,13 +19,14 @@ def index():
 @app.route('/save_options', methods=["POST"])
 def save_options():
     # TODO: change to post request
-    global temps, max_length, n_samples, weights_path, vocab_path, config_path
+    global prefix, temps, max_length, n_samples, weights_path, vocab_path, config_path
     max_length = int(request.form["max_length"])
     temps = [float(value) for value in request.form["temperatures"].split(',')]
     n_samples = int(request.form["samples"])
     weights_path = "textgenerator/weights/" + request.form["weightOption"] + "_weights.hdf5"
     vocab_path = "textgenerator/vocabs/" + request.form["weightOption"] + "_vocab.json"
     config_path = "textgenerator/configs/" + request.form["weightOption"] + "_config.json"
+    prefix = request.form["prefix"]
     print(weights_path)
     print(vocab_path)
     print(config_path)
@@ -46,7 +47,7 @@ def read_file():
                 vocab_path=vocab_path,
                 config_path=config_path
             )
-        gens = train_gen.generate_samples(n=n_samples, max_gen_length=max_length, temperatures=temps, return_as_list=True)
+        gens = train_gen.generate_samples(n=n_samples, max_gen_length=max_length, temperatures=temps, return_as_list=True, prefix=prefix)
         print(gens)
         return render_template("text_generation.html", generated=gens)
     except Exception as e:
@@ -61,4 +62,5 @@ if __name__ == "__main__":
     config.gpu_options.allow_growth = True
     sess = tf.Session(config=config)
     set_session(sess)
-    app.run()
+    #app.run()
+    app.run(debug=False, host="0.0.0.0", port=5004)
