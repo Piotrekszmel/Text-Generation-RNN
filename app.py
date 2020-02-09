@@ -58,5 +58,5 @@ if __name__ == "__main__":
     config.gpu_options.allow_growth = True
     sess = tf.Session(config=config)
     set_session(sess)
-    app.run(host='0.0.0.0')
+    app.run(debug=True, port=5004, host='0.0.0.0')
     
