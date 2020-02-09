@@ -7,10 +7,12 @@
     </head>
     <body style="background-color: black;">    
         <p class="center" style="padding-top: 10%; color: white;">
-            {% for text in generated %} 
-                {% for t in text %} 
-                    {{ t }} <br/><br/>
+            {% for temp in temps %} 
+                temperature: {{temp}}
+                {% for text in generated[loop.index0] %} 
+                    {{text}} <br/>
                 {% endfor %}
+                <br/><br/>
             {% endfor %}
         </p>
     </body>
