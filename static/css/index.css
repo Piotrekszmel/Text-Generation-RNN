@@ -67,7 +67,8 @@ input:focus + label {
 .button .predict-button {
 	width: 120px;
 	height: 25px;
-	
+    border: 2px solid #fff !important;
+    border-radius: 50px;
 	background-color: #7052CB;
 	margin-top: 5px;
 	color: #ffffff;

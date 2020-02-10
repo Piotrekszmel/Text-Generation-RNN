@@ -8,7 +8,7 @@ config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
 set_session(sess)
 
-
+"""
 model_cfg = {
     'word_level': False,   # set to True if want to train a word-level model (requires more data and smaller max_length)
     'rnn_size': 128,   # number of LSTM cells of each layer (128/256 recommended)
@@ -26,21 +26,21 @@ train_cfg = {
     'validation': False,   # If train__size < 1.0, test on holdout dataset; will make overall training slower
     'is_csv': False   # set to True if file is a CSV exported from Excel/BigQuery/pandas
 }
-
+"""
+"""
 texts = []
 
-for line in open(os.path.join("/home/pszmelcz/Desktop/projects/University-Project-NLP/text_generation/datasets", "english.txt"), "r", encoding="utf-8").readlines():
+for line in open(os.path.join("/home/pszmelcz/Desktop/projects/University-Project-NLP/text_generation/datasets", "shakespeare.txt "), "r", encoding="utf-8").readlines():
     texts.append(line)
-    if len(texts) == 300000:
-        break
 
 
-with open('datasets/eng.txt', 'w') as f:
+with open('datasets/s.txt', 'w') as f:
     for text in texts:
         f.write("{}".format(text))
-
+"""
+"""
 model_name = 'english_128_100_4LSTM'
-file_name = "datasets/eng.txt"
+file_name = "datasets/shakespeare.txt"
 textgen = text_generator(name=model_name)
 train_function = textgen.train_from_file if train_cfg['line_delimited'] else textgen.train_from_largetext_file
 train_function(
@@ -61,9 +61,9 @@ train_function(
     word_level=model_cfg['word_level'])
 
 """
-textgen = text_generator(weights_path='weights/english_128_100_4LSTM_weights.hdf5',
-                       vocab_path='vocabs/english_128_100_4LSTM_vocab.json',
-                       config_path='configs/english_128_100_4LSTM_config.json')
+textgen = text_generator(weights_path='weights/shakespeare_128_100_4LSTM_weights.hdf5',
+                       vocab_path='vocabs/shakespeare_128_100_4LSTM_vocab.json',
+                       config_path='configs/shakespeare_128_100_4LSTM_config.json')
                        
-textgen.generate_samples(max_gen_length=150, temperatures=[0.2, 0.5, 1], prefix="I am")
-"""
+textgen.generate_samples(max_gen_length=400, temperatures=[1])
+

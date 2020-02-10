@@ -18,10 +18,8 @@
             <form style="color: white;" action="/save_options" enctype="application/json" method="POST">
                 <h1 style="color: orange;">CHOOSE WEIGHTS FOR YOUR MODEL</h1>
                 <select class="select-css" name="weightOption">
-                        <option style="font-weight: bold;" value="english_128_300LSTM">BASIC WEIGHTS</option>
                         <option style="font-weight: bold;" value="english_128_300LSTM">ENGLISH WEIGHTS</option>
-                        <option style="font-weight: bold;" value="twitter_weights">TWITTER WEIGHTS</option>
-                        <option style="font-weight: bold;" value="shakespeare_weights">SHAKESPEARE WEIGHTS</option>
+                        <option style="font-weight: bold;" value="shakespeare_128_100_4LSTM">SHAKESPEARE WEIGHTS</option>
                 </select>
                 <br/><br/><br/><br/>
                 
@@ -60,12 +58,12 @@
                 </div>
                     
                 <br><br>
-                <button class='button_predict' style="width: 20%; height: 4em;" type="submit">Save Options</button>
+                <button class='button_predict' style="width: 20%; height: 4em; background-color: gold" type="submit">Save Options</button>
             </form>
             <br/>
             <form action='/read' method='POST' enctype="application/json" name="file_name">
                 <div class="predictions">
-                    <button class='button_predict' style="width: 20%; height: 4em;" type="submit">Generate!</button>
+                    <button class='button_predict' style="width: 20%; height: 4em; background-color: gold" type="submit">Generate!</button>
                 </div>
                 <div style="padding: 2%">
                     <p id='errorMsg' style='padding: 1%; color: red;'>{{error}}</p></p>
