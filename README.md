@@ -14,12 +14,12 @@ This project enables training of a text-generating neural network of a selected 
   
 1) docker build -t [CONTAINER_NAME] [PATH_TO_DOCKERFILE](if it is in Your current directory use ".")  
 2) docker run [CONTAINER_NAME]  
-3) By default Your docker should run on 172.17.0.2:5000. But If it is not working You have to check  
+3) By default Your docker should run on 172.17.0.2:5004. But If it is not working You have to check  
 it by using some additinal commands  
 4) docker ps -> check Your's container name (they are random generated, last column) **
 5) docker inspect (name from previous command)  **
 6) find "IPadress". It should be something like 172.17.0.* **
-7) Now You just need to paste this IP with proper port (5000 by default) in Your browser **
+7) Now You just need to paste this IP with proper port (5004 by default) in Your browser **
 
 
 ## Without Docker(python3, virtualenv recommended) 
