@@ -1,5 +1,5 @@
 scipy
-numpy==1.17.3
+numpy==1.22.0
 gunicorn==20.0.4
 pip==9.0.1
 scikit-learn==0.21.3 
